@@ -7,14 +7,14 @@ set -e
 
 APP_NAME=bookshop
 
-echo '############## Initialize CAPM Project ##############'
-cds init --add tiny-sample $APP_NAME
-cd $APP_NAME
+# echo '############## Initialize CAPM Project ##############'
+# cds init --add tiny-sample $APP_NAME
+# cd $APP_NAME
 
-echo '############## Set Up SQLite as Database ##############'
-npm install sqlite3 --save
-# Overwrite cds.requires in package.json
-npx cds add sqlite
+# echo '############## Set Up SQLite as Database ##############'
+# npm install sqlite3 --save
+# # Overwrite cds.requires in package.json
+# npx cds add sqlite
 
 echo '############## Install Dependencies ##############'
 npm install
