@@ -5,7 +5,7 @@ set -e
 # You must export/set these before running:
 # cf_api_url, cf_user, cf_password, cf_org, cf_space
 
-APP_NAME=bookshop
+APP_NAME=bookshop_dev
 
 # echo '############## Initialize CAPM Project ##############'
 # cds init --add tiny-sample $APP_NAME
