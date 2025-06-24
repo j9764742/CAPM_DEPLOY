@@ -25,9 +25,10 @@ jobs:
 
       - name: Install MBT (Multi-target build tool)
         run: |
-          wget https://github.com/SAP/cloud-mta-build-tool/releases/latest/download/mbt-linux-x64
-          chmod +x mbt-linux-x64
-          sudo mv mbt-linux-x64 /usr/local/bin/mbt
+          wget https://github.com/SAP/cloud-mta-build-tool/releases/download/v1.2.34/mbt-1.2.34-linux-x64
+          chmod +x mbt-1.2.34-linux-x64
+          sudo mv mbt-1.2.34-linux-x64 /usr/local/bin/mbt
+
 
       - name: Build MTA archive
         run: mbt build -p=cf -t=gen
