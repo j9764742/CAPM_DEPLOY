@@ -55,7 +55,7 @@ cf push $APP_NAME --no-start
 cf set-env $APP_NAME NODE_ENV testing
 cf restage $APP_NAME
 
-echo '############## Deploy MTA Archive to CF ##############'
-cf deploy gen/mta_archives/*.mtar -f
+# echo '############## Deploy MTA Archive to CF ##############'
+# cf deploy $APP_NAME -f
 
 echo '✅ Deployment complete for '$APP_NAME
