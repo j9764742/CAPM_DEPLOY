@@ -23,5 +23,32 @@
   "sapux": [
     "app/admin-books",
     "app/browse"
-  ]
+  ],
+  "cds": {
+  "requires": {
+    "db": {
+      "kind": "sqlite",
+      "credentials": {
+        "file": "sqlite.db"
+      }
+    }
+  }
+},
+  "build": {
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "model": [
+          "db/schema.cds"
+        ]
+      }
+    },
+    "tasks": [
+      {
+        "name": "db",
+        "requires": ["db"],
+        "actions": ["deploy"]
+      }
+    ]
+  }
 }
