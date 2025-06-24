@@ -16,7 +16,7 @@ cf install-plugin multiapps -f
 cf install-plugin html5-plugin -f
 
 echo '############## Build ##############'
-npx mbt build --mtar app.mtar
+npx cf push --mtar app.mtar
 
 echo '############## Authorizations ##############'
 cf api $cf_api_url

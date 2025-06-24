@@ -25,15 +25,15 @@
     "app/browse"
   ],
   "cds": {
-  "requires": {
-    "db": {
-      "kind": "sqlite",
-      "credentials": {
-        "file": "sqlite.db"
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "credentials": {
+          "file": "sqlite.db"
+        }
       }
     }
-  }
-},
+  },
   "build": {
     "requires": {
       "db": {
@@ -46,8 +46,12 @@
     "tasks": [
       {
         "name": "db",
-        "requires": ["db"],
-        "actions": ["deploy"]
+        "requires": [
+          "db"
+        ],
+        "actions": [
+          "deploy"
+        ]
       }
     ]
   }
