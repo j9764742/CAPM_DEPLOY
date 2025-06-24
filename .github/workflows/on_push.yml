@@ -20,5 +20,5 @@ jobs:
           cf_password: ${{ secrets.CF_PASSWORD }}
           cf_api_url: ${{vars.CF_API_URL}}
           cf_org: ${{vars.CF_ORG}}
-          cf_space: ${{vars.CF_SPACE}}
+          cf_space: ${{vars.CF_SPACE_QAS}}
         run: ./.github/workflows/scripts/btp_deploy.sh
