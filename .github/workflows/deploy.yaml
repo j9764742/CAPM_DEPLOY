@@ -1,0 +1,49 @@
+name: Deploy CAPM App to SAP BTP
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install CAP CLI & dependencies
+        run: |
+          npm install -g @sap/cds
+          npm install
+
+      - name: Install MBT (Multi-target build tool)
+        run: |
+          wget https://github.com/SAP/cloud-mta-build-tool/releases/latest/download/mbt-linux-x64
+          chmod +x mbt-linux-x64
+          sudo mv mbt-linux-x64 /usr/local/bin/mbt
+
+      - name: Build MTA archive
+        run: mbt build -p=cf -t=gen
+
+      - name: Install Cloud Foundry CLI
+        run: |
+          curl -v -L "https://packages.cloudfoundry.org/stable?release=linux64" -o cf-cli.tgz
+          tar -xvzf cf-cli.tgz
+          sudo mv cf /usr/local/bin/
+
+      - name: Authenticate with Cloud Foundry
+        run: |
+          cf api ${{ secrets.CF_API }}
+          cf auth ${{ secrets.CF_USERNAME }} ${{ secrets.CF_PASSWORD }}
+          cf target -o ${{ secrets.CF_ORG }} -s ${{ secrets.CF_SPACE }}
+
+      - name: Deploy to SAP BTP
+        run: |
+          cf deploy gen/mta_archives/*.mtar -f
